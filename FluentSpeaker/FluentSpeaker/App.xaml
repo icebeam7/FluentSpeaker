@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FluentSpeaker.App">
+    <Application.Resources>
+        <Style TargetType="Label" x:Key="TitleLabel">
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="TextColor" Value="#FFA700" />
+        </Style>
+
+        <Style TargetType="Label" x:Key="SubtitleLabel">
+            <Setter Property="FontAttributes" Value="Italic" />
+            <Setter Property="TextColor" Value="#FAE072" />
+        </Style>
+
+        <Style TargetType="Label" x:Key="ButtonLabel">
+            <Setter Property="FontAttributes" Value="Italic" />
+            <Setter Property="TextColor" Value="Blue" />
+            <Setter Property="Margin" Value="0,0,0,10" />
+            <Setter Property="VerticalOptions" Value="End" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="End" />
+        </Style>
+
+        <Style TargetType="ImageButton" x:Key="ButtonImage">
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Start" />
+            <Setter Property="Padding" Value="0,10,0,30" />
+            <Setter Property="BackgroundColor" Value="LightGoldenrodYellow" />
+            <Setter Property="HeightRequest" Value="90" />
+            <Setter Property="WidthRequest" Value="200" />
+            <Setter Property="CornerRadius" Value="10" />
+        </Style>
+
+        <Style TargetType="Button" x:Key="NormalButton">
+            <Setter Property="BackgroundColor" Value="LightYellow" />
+            <Setter Property="TextColor" Value="#29404E" />
+            <Setter Property="CornerRadius" Value="10" />
+        </Style>
+
+        <Style TargetType="CollectionView" x:Key="NormalCollectionView">
+            <Setter Property="HeightRequest" Value="100" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="SelectionMode" Value="Single" />
+            <Setter Property="ItemsLayout">
+                <LinearItemsLayout Orientation="Horizontal"/>
+            </Setter>
+        </Style>
+
+        <Style TargetType="StackLayout" x:Key="SquareStackLayout">
+            <Setter Property="Orientation" Value="Vertical" />
+            <Setter Property="WidthRequest" Value="100" />
+            <Setter Property="HeightRequest" Value="100" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="Purple" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        
+    </Application.Resources>
+</Application>

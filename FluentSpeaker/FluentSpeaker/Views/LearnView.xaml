@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:FluentSpeaker.ViewModels"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             x:Class="FluentSpeaker.Views.LearnView"
+             Title="Practice your pronunciation"
+             BackgroundColor="#152F3E">
+
+    <ContentPage.BindingContext>
+        <vm:LearnViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView Margin="10">
+
+            <Grid Margin="10" 
+                  RowDefinitions="Auto,Auto,64,Auto,Auto,Auto,Auto,400,Auto,150,Auto,150"
+                  ColumnDefinitions="*,*,*">
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       Style="{StaticResource TitleLabel}"
+                       Text="What do you want to say?"/>
+
+                <Editor Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        BackgroundColor="White"
+                        TextColor="DarkBlue"
+                        Text="{Binding TextToRecognize}"/>
+
+                <Grid Grid.Row="2"
+                      Grid.Column="0"
+                      RowDefinitions="*"
+                      BackgroundColor="LightGoldenrodYellow">
+                    <Label Text="Listen"
+                           BackgroundColor="LightGoldenrodYellow"
+                           Style="{StaticResource ButtonLabel}"/>
+
+                    <ImageButton Source="listen48.png"
+                                 Style="{StaticResource ButtonImage}"
+                                 Command="{Binding ListenCommand}"/>
+                </Grid>
+
+                <Grid Grid.Row="2"
+                      Grid.Column="1"
+                      RowDefinitions="*"
+                      BackgroundColor="LightGoldenrodYellow">
+                    <Label Text="Say it"
+                           BackgroundColor="LightGoldenrodYellow"
+                           Style="{StaticResource ButtonLabel}"/>
+                    
+                    <ImageButton Source="microphone48.png"
+                                 Style="{StaticResource ButtonImage}"
+                                 Command="{Binding SpeakCommand}"/>
+                </Grid>
+
+                <Grid Grid.Row="2"
+                      Grid.Column="2"
+                      RowDefinitions="*"
+                      BackgroundColor="LightGoldenrodYellow">
+                    <Label Text="New Text"
+                           BackgroundColor="LightGoldenrodYellow"
+                           Style="{StaticResource ButtonLabel}"/>
+
+                    <ImageButton Source="text48.png"
+                                 Style="{StaticResource ButtonImage}"
+                                 Command="{Binding GetTextCommand}"/>
+                </Grid>
+
+                <ActivityIndicator Grid.Row="3"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="3"
+                                   Color="Orange"
+                                   IsRunning="{Binding IsBusy}"/>
+
+                <Label Grid.Row="4"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       Style="{StaticResource TitleLabel}"
+                       Text="You said..."/>
+
+                <Label Grid.Row="5"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       Style="{StaticResource SubtitleLabel}"
+                       Text="{Binding RecognizedText}"/>
+
+                <Label Grid.Row="6"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       Style="{StaticResource TitleLabel}"
+                       Text="Pronunciation Assessment Feedback"/>
+
+                <microcharts:ChartView Grid.Row="7"
+                                       Grid.Column="0"
+                                       Grid.ColumnSpan="3"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Chart="{Binding MetricsChart}" 
+                                       WidthRequest="800"
+                                       HeightRequest="400"/>
+
+                <Label Grid.Row="8"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       Style="{StaticResource TitleLabel}"
+                       Text="Phonemes (with Accuracy Score)"/>
+
+                <CollectionView Grid.Row="9" 
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                ItemsSource="{Binding Phonemes}"
+                                Style="{StaticResource NormalCollectionView}">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Style="{StaticResource SquareStackLayout}">
+                                <Label Text="{Binding Text}"
+                                       TextColor="Orange"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       FontAttributes="Italic"/>
+
+                                <Label Text="{Binding AccuracyScore, StringFormat='{0} %'}" 
+                                       TextColor="#FAE072"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       FontSize="Small"
+                                       FontAttributes="Bold"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label Grid.Row="10"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       Style="{StaticResource TitleLabel}"
+                       Text="Syllables (with Accuracy Score)"/>
+
+                <CollectionView Grid.Row="11" 
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                ItemsSource="{Binding Syllables}"
+                                Style="{StaticResource NormalCollectionView}">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Style="{StaticResource SquareStackLayout}">
+                                <Label Text="{Binding Text}"
+                                       TextColor="Orange"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       FontAttributes="Italic"/>
+
+                                <Label Text="{Binding AccuracyScore, StringFormat='{0} %'}" 
+                                       TextColor="#FAE072"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       FontSize="Small"
+                                       FontAttributes="Bold"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

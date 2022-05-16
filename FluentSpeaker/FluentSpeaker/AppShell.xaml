@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="FluentSpeaker.AppShell"
+       xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+       ios:Page.UseSafeArea="True"
+       xmlns:views="clr-namespace:FluentSpeaker.Views"
+       FlyoutBehavior="Flyout">
+    <FlyoutItem Title="Fluent Speaker" FlyoutDisplayOptions="AsMultipleItems">
+        <Tab Title="Learn" Icon="microphone.png">
+            <ShellContent Title="Learn" Icon="microphone.png" 
+                          ContentTemplate="{DataTemplate views:LearnView}"/>
+        </Tab>
+    </FlyoutItem>
+</Shell>
